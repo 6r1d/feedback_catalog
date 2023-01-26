@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}{{ APP_TITLE }}{% endblock title %}
+
+{% block nav_links %}{% include "nav_links.html" %}{% endblock nav_links %}
+
+{% block content %}
+<div class="my-3 p-3 bg-body rounded shadow-sm">
+    <h4 class="border-bottom">Description</h4>
+    <p>
+        This application provides a catalog of user comments on the documentation.
+        Different comment types are highlighted with different icons.
+    </p>
+</div>
+{% endblock content %}

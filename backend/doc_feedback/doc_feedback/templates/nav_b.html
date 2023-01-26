@@ -1,0 +1,31 @@
+                <form class="d-flex mb-3 mb-lg-0 me-lg-3" role="search" id="search-form">
+                    <div class="input-group">
+                        {% if search_term == '*' %}
+                        <input class="form-control outline-light search-field" type="search" placeholder="Search"
+                            aria-label="Search">
+                        {% else %}
+                        <input class="form-control outline-light search-field" type="search" placeholder="Search"
+                            aria-label="Search" value="{{ search_term }}">
+                        {% endif %}
+                        <button class="btn btn-primary btn-outline-light text-white" type="submit">Search</button>
+                    </div>
+                </form>
+
+                <div class="text-end">
+                    <div class="btn-group">
+                        {% if user.is_authenticated %}
+                        <a href="#" type="button disabled" class="btn btn-outline-light">{{ user }}</a>
+                        <a href="{% url 'logout' %}" type="button" class="btn btn-outline-light">Logout</a>
+                        {% else %}
+                        {% if URL_NAME == "login" %}
+                        <a href="{% url 'login' %}" type="button" class="btn btn-outline-light active">Login</a>
+                        {% else%}
+                        <a href="{% url 'login' %}" type="button" class="btn btn-outline-light">Login</a>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </nav>

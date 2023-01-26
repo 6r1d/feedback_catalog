@@ -1,0 +1,18 @@
+<script>
+const siteRoot = '{% url "feedback_default" %}';
+function processForm(e) {
+    if (e.preventDefault) e.preventDefault();
+    const searchVal = encodeURIComponent(
+        e.target.querySelector('.search-field').value
+    );
+    window.location.href = siteRoot + `list_search/${searchVal}/1`;
+    return false;
+}
+
+var form = document.getElementById('search-form');
+if (form.attachEvent) {
+    form.attachEvent("submit", processForm);
+} else {
+    form.addEventListener("submit", processForm);
+}
+</script>

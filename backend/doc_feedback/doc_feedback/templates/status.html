@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load fb_count %}
+
+{% block title %}{{ APP_TITLE }}: status{% endblock title %}
+
+{% block nav_links %}{% include "nav_links.html" %}{% endblock nav_links %}
+
+{% block content %}
+<div class="my-3 p-3 bg-body rounded shadow-sm">
+    <h4 class="border-bottom">Status</h4>
+
+    <div class="list-group w-auto">
+        <a href="{% url 'feedback-query-index' ftype='error' current_page=1 %}" class="list-group-item list-group-item-action d-flex gap-3 py-3">
+            <i class="bi bi-x-circle flex-shrink-0" style="font-size: 28px;"></i>
+            <div class="d-flex gap-2 w-100 justify-content-between">
+                <div>
+                    <h6 class="mb-0">Feedbacks telling about a documentation error</h6>
+                    <p class="mb-0 opacity-75">{% feedback_record_count %}</p>
+                </div>
+            </div>
+        </a>
+        <a href="{% url 'feedback-query-index' ftype='suggestion' current_page=1 %}" class="list-group-item list-group-item-action d-flex gap-3 py-3">
+            <i class="bi bi-lightbulb flex-shrink-0" style="font-size: 28px;"></i>
+            <div class="d-flex gap-2 w-100 justify-content-between">
+                <div>
+                    <h6 class="mb-0">Feedbacks telling a suggestion</h6>
+                    <p class="mb-0 opacity-75">{% feedback_record_count %}</p>
+                </div>
+            </div>
+        </a>
+        <a href="{% url 'feedback-index' current_page=1 %}" class="list-group-item list-group-item-action d-flex gap-3 py-3">
+            <i class="bi bi-archive flex-shrink-0" style="font-size: 28px;"></i>
+            <div class="d-flex gap-2 w-100 justify-content-between">
+                <div>
+                    <h6 class="mb-0">All feedback records</h6>
+                    <p class="mb-0 opacity-75">{% feedback_record_count %}</p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+{% endblock content %}

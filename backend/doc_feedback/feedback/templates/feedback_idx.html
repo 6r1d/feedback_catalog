@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}{{ APP_TITLE }}: page {{ current_page }}{% endblock title %}
+
+{% block nav_links %}{% include "nav_links.html" %}{% endblock nav_links %}
+
+{% block content %}
+<div class="mt-3"></div>
+
+{% if user.is_authenticated %}
+{% include "pagination.html" %}
+{% for feedback in feedbacks %}
+<div class="my-3 p-3 bg-body rounded shadow-sm">
+    <h6 class="border-bottom pb-2 mb-2">
+        <div class="btn-group btn-group-sm">
+            <a class="btn btn-primary" href="{% url 'admin:feedback_feedback_change' feedback.pk %}" title="Edit">{{ feedback.created_at }}</a>
+            {% if '@' in feedback.email %}
+            <a class="btn btn-outline-primary" href="mailto:{{ feedback.email }}" title="Send an email">{{ feedback.email }}</a>
+            {% else %}
+            <a class="btn btn-outline-primary disabled" href="#">{{ feedback.email }}</a>
+            {% endif %}
+          </div>
+    </h6>
+    <div class="d-flex">
+        <div class="pe-3 pt-2 text-center">
+            <div class="list-group shadow-sm" role="group">
+                <li class="list-group-item active">#{{ feedback.pk }}</li>
+                <li class="list-group-item btn-outline-primary bg-primary-subtle text-dark">
+                    {% if feedback.feedback_type == 'suggestion' %}
+                    <i class="bi bi-lightbulb" title="Suggestion"></i>
+                    {% elif feedback.feedback_type == 'error' %}
+                    <i class="bi bi-x-circle" title="Error"></i>
+                    {% else %}
+                    <i class="bi bi-question-circle" title="Not available"></i>
+                    {% endif %}
+                </li>
+            </div>
+        </div>
+        <div class="pt-2">
+            {{ feedback.message | linebreaks }}
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% include "pagination.html" %}
+{% else %}
+<div class="my-3 p-3 bg-body rounded shadow-sm">
+Please log in to access the catalog
+</div>
+{% endif %}
+
+{% endblock content %}

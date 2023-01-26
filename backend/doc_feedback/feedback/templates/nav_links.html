@@ -1,0 +1,16 @@
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <li class="nav-item">
+        {% if URL_NAME == "status" %}
+        <a class="nav-link active" href="{% url 'status' %}">Status</a>
+        {% else %}
+        <a class="nav-link" href="{% url 'status' %}">Status</a>
+        {% endif %}
+    </li>
+    <li class="nav-item">
+        {% if URL_NAME == "feedback-index" %}
+        <a class="nav-link active" href="{% url 'feedback-index' 1 %}">Pages</a>
+        {% else %}
+        <a class="nav-link" href="{% url 'feedback-index' 1 %}">Pages</a>
+        {% endif %}
+    </li>
+</ul>

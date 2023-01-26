@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: "./backend"
+    command: ["./start.sh"]
+    restart: always
+    volumes:
+      - ./backend/doc_feedback/static:/home/fbc/doc_feedback/static
+      - ./backend/doc_feedback/installation:/home/fbc/doc_feedback/installation
+    secrets:
+     - django_secret
+  nginx:
+    build:
+      context: "./nginx"
+    depends_on:
+      - backend
+    restart: always
+    volumes:
+      - ./backend/doc_feedback/static:/usr/src/app/static/
+    ports:
+        - 80:80
+
+secrets:
+  django_secret:
+    file: DJANGO_SECRET

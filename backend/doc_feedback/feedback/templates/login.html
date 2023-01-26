@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block nav_links %}{% include "nav_links.html" %}{% endblock nav_links %}
+
+{% block title %}{{ APP_TITLE }}: page {{ current_page }}{% endblock title %}
+
+{% block content %}
+<div class="my-3 p-3 bg-body rounded shadow-sm">
+    <h3 class="border-bottom">Login</h3>
+
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <div class="form-floating mb-3">
+            <input type="text" name="login" class="form-control rounded-3" id="floatingInput" placeholder="username">
+            <label for="floatingInput">Login</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="password" name="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+        </div>
+        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Sign up</button>
+    </form>
+</div>
+{% endblock content %}

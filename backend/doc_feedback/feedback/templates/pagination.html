@@ -1,0 +1,24 @@
+<ul class="pagination justify-content-center">
+    <!-- The "previous" button -->
+    {% if page_obj.has_previous %}
+    <li class="page-item"><a class="page-link" href="{% url 'feedback-index' current_page=page_obj.previous_page_number %}">Previous</a></li>
+    {% else %}
+    <li class="page-item"><a class="page-link disabled" href="#">Previous</a></li>
+    {% endif %}
+    <!-- The current pagination page -->
+    {% for page_id in paginator_obj.page_range %}
+        {% if page_id <= page_obj.number|add:5 and page_id >= page_obj.number|add:-5 %}
+            {% if page_id == current_page %}
+            <li class="page-item active"><a class="page-link" href="#">{{page_id}}</a></li>
+            {% else %}
+            <li class="page-item"><a class="page-link" href="{% url 'feedback-index' current_page=page_id %}">{{page_id}}</a></li>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    <!-- The "next" button -->
+    {% if page_obj.has_next %}
+    <li class="page-item"><a class="page-link" href="{% url 'feedback-index' current_page=page_obj.next_page_number %}">Next</a></li>
+    {% else %}
+    <li class="page-item"><a class="page-link disabled" href="#">Next</a></li>
+    {% endif %}
+</ul>
