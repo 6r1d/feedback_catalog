@@ -4,7 +4,8 @@ This is a Django application that stores user comments regarding the [Iroha 2](h
 
 ## Installation
 
-This application is using `docker-compose` utility for the ease of use and it only needs a secrets file that is provided separately. You'll need to put the `DJANGO_SECRET` file into the project root directory for it to function normally.
+This application is using `docker-compose` utility for the ease of use.
+You can read more about it [here](https://docs.docker.com/compose/) and about its syntax [here](https://docs.docker.com/compose/compose-file/compose-file-v3/).
 
 By default, the feedback catalog uses port 80. You can alter it in the `nginx` → `ports` section.
 Inside the container, Nginx serves on port 80, while the `ports` section defines connection between the host and container ports.

@@ -1,21 +1,28 @@
 #!/bin/sh
+# Define the app root
+AROOT="/home/fbc/doc_feedback"
 # Define fixture root path,
 # a fixture path, a fixture loading marker,
 # static collection marker
-IROOT="/home/fbc/doc_feedback/installation"
-FIXTURES="$IROOT/base.json"
-INSTALLED="/home/fbc/ready"
+IROOT="$AROOT/installation"
+# Define the installation marker filename
+INSTALLED="$AROOT/ready"
 # Load Django secrets
-source /run/secrets/django_secret
-# Migrate before changing data
+source "$AROOT/.DJANGO_SECRET_KEY"
+# Update PATH
+PATH="/home/fbc/.local/bin:${PATH}"
+# Migrate automatically
 python manage.py makemigrations --noinput
 python manage.py migrate --noinput
-# Load fixtures if necessary
+# Create the admin user if necessary
 if [ -f "$INSTALLED" ]; then
-    echo "Initial data was previously added. Continuing."
+    echo "Admin was previously added. Continuing."
 else
-    echo "Initial data not found, adding Django fixtures."
-    python manage.py loaddata $FIXTURES
+    echo "Admin not found, adding."
+    export DJANGO_SUPERUSER_EMAIL="admin@i2fbccatalog.info"
+    export DJANGO_SUPERUSER_USERNAME="admin"
+    export DJANGO_SUPERUSER_PASSWORD="admin"
+    python manage.py createsuperuser --noinput
     touch $INSTALLED
 fi
 # Collect static

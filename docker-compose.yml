@@ -9,8 +9,8 @@ services:
     volumes:
       - ./backend/doc_feedback/static:/home/fbc/doc_feedback/static
       - ./backend/doc_feedback/installation:/home/fbc/doc_feedback/installation
-    secrets:
-     - django_secret
+    # secrets:
+    #  - django_secret
   nginx:
     build:
       context: "./nginx"
@@ -22,6 +22,6 @@ services:
     ports:
         - 80:80
 
-secrets:
-  django_secret:
-    file: DJANGO_SECRET
+# secrets:
+#   django_secret:
+#     file: DJANGO_SECRET
