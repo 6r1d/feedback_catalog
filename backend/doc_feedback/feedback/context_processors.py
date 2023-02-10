@@ -1,3 +1,7 @@
+"""
+Add the context processors for Django templates
+"""
+
 from django.conf import settings
 from django.urls import resolve
 

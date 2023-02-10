@@ -1,5 +1,9 @@
+"""
+Configures admin panel for the Feedback app
+"""
+
 from django.contrib import admin
-from .models import Feedback
+from feedback.models import Feedback
 
 FEEDBACK_ICONS = {
     'error': '❌',
@@ -8,19 +12,27 @@ FEEDBACK_ICONS = {
 
 class FeedbackAdmin(admin.ModelAdmin):
     """
-    I wanna get printed in the Admin!
+    Set up admin configuration for the feedback model.
+    Configures fields that are available
+    and functions for ones that have to be reformatted.
     """
 
     list_display = ('pk', 'custom_feedback_type', 'created_at', 'content', 'email', 'url')
 
     @admin.display(empty_value='N/A', description="Content")
     def content(self, obj):
+        """
+        Shortens the long message for admin display.
+        """
         return obj.message[:75] + '…' \
                if len(obj.message) > 75 \
                else obj.message
 
     @admin.display(empty_value='N/A', description="Type")
     def custom_feedback_type(self, obj):
+        """
+        Displays the message type as an icon.
+        """
         result = obj.feedback_type
         return FEEDBACK_ICONS.get(result) or '?'
 

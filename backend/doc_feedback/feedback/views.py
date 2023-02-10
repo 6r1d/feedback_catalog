@@ -1,3 +1,7 @@
+"""
+Configures views for the Feedback app
+"""
+
 from json import loads
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseBadRequest
