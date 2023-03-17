@@ -36,8 +36,12 @@ CORS_ORIGIN_ALLOW_ALL = True
 # Application definition
 
 INSTALLED_APPS = [
+    # Custom
     'doc_feedback',
     'feedback.apps.FeedbackConfig',
+    # Plugins
+    'corsheaders',
+    # Django-related, enabled initially
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,6 +51,10 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # Plugins
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    # Django-related, enabled initially
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

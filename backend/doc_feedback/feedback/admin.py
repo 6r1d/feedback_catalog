@@ -19,6 +19,7 @@ class FeedbackAdmin(admin.ModelAdmin):
 
     list_display = ('pk', 'custom_feedback_type', 'created_at', 'content', 'email', 'url')
 
+    # pylint: disable=R0201
     @admin.display(empty_value='N/A', description="Content")
     def content(self, obj):
         """
@@ -28,6 +29,7 @@ class FeedbackAdmin(admin.ModelAdmin):
                if len(obj.message) > 75 \
                else obj.message
 
+    # pylint: disable=R0201
     @admin.display(empty_value='N/A', description="Type")
     def custom_feedback_type(self, obj):
         """

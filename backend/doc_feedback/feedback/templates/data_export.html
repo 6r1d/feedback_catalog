@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block nav_links %}{% include "nav_links.html" %}{% endblock nav_links %}
+
+{% block title %}{{ APP_TITLE }}: page {{ current_page }}{% endblock title %}
+
+{% block content %}
+<div class="my-3 p-3 bg-body rounded shadow-sm">
+    <h4 class="border-bottom">Data export</h4>
+    <p><a href="{% url 'export_data' 'ur' %}" download="feedback_export_ur_{{datetime}}.json">Export users and records</a></p>
+    <p><a href="{% url 'export_data' 'r' %}" download="feedback_export_r_{{datetime}}.json">Export only records</a></p>
+    <p><a href="{% url 'export_data' 'u' %}" download="feedback_export_u_{{datetime}}.json">Export only users</a></p>
+</div>
+{% endblock content %}

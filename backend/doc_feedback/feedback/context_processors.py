@@ -5,7 +5,7 @@ Add the context processors for Django templates
 from django.conf import settings
 from django.urls import resolve
 
-def app_title(request):
+def app_title(_):
     """
     Returns:
         (str): a title for the current application
